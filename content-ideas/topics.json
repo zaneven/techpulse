@@ -1,0 +1,99 @@
+{
+  "topics": [
+    {
+      "title": "Best Programming Books 2026",
+      "category": "Coding",
+      "description": "Must-read books for developers",
+      "affiliate": "Amazon Books"
+    },
+    {
+      "title": "VS Code Tips and Tricks",
+      "category": "Tutorials",
+      "description": "Hidden features you didn't know about",
+      "affiliate": "None"
+    },
+    {
+      "title": "Free Developer Tools",
+      "category": "Tutorials",
+      "description": "Best free alternatives to paid tools",
+      "affiliate": "Various"
+    },
+    {
+      "title": "Best Chrome Extensions for Developers",
+      "category": "Reviews",
+      "description": "Boost your browser productivity",
+      "affiliate": "Chrome Web Store"
+    },
+    {
+      "title": "How to Learn React in 2026",
+      "category": "Tutorials",
+      "description": "Complete roadmap for React beginners",
+      "affiliate": "Courses"
+    },
+    {
+      "title": "Best Open Source Projects to Contribute",
+      "category": "Coding",
+      "description": "Start contributing today",
+      "affiliate": "None"
+    },
+    {
+      "title": "Coding Career Advice",
+      "category": "Career",
+      "description": "Tips for landing your first job",
+      "affiliate": "Courses, Books"
+    },
+    {
+      "title": "Best JavaScript Frameworks Compared",
+      "category": "Reviews",
+      "description": "React vs Vue vs Angular vs Svelte",
+      "affiliate": "Courses"
+    },
+    {
+      "title": "Best Budget Mechanical Keyboards",
+      "category": "Reviews",
+      "description": "Top picks under $100",
+      "affiliate": "Amazon"
+    },
+    {
+      "title": "Best Standing Desks",
+      "category": "Reviews",
+      "description": "Ergonomic picks for developers",
+      "affiliate": "Amazon"
+    },
+    {
+      "title": "Best Noise Cancelling Headphones",
+      "category": "Reviews",
+      "description": "Focus in noisy environments",
+      "affiliate": "Amazon"
+    },
+    {
+      "title": "How to Build a Portfolio",
+      "category": "Tutorials",
+      "description": "Land more interviews",
+      "affiliate": "Hosting, Domain"
+    },
+    {
+      "title": "Best VS Code Themes",
+      "category": "Reviews",
+      "description": "Make your editor look amazing",
+      "affiliate": "None"
+    },
+    {
+      "title": "Git Commands You Should Know",
+      "category": "Tutorials",
+      "description": "Beyond the basics",
+      "affiliate": "None"
+    },
+    {
+      "title": "Best Laptop Stands",
+      "category": "Reviews",
+      "description": "Improve your posture",
+      "affiliate": "Amazon"
+    }
+  ],
+  "schedule": {
+    "monday": "Tutorial",
+    "wednesday": "Review",
+    "friday": "Career/Tips"
+  }
+}
