@@ -10,7 +10,91 @@ jobs:
   reminder:
     runs-on: ubuntu-latest
     steps:
-      - name: Create journal reminder issue
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            .github/workflows/journal-reminder.yml
+          sparse-checkout-cone-mode: false
+
+      - name: Create journal file
+        run: |
+          DATE=$(date -u +%Y-%m-%d)
+          FILENAME="journal-${DATE}.md"
+          
+          cat > "$FILENAME" << 'EOF'
+# 📝 $DATE 日记
+
+---
+
+## 1. 今天最让我感恩的事是...
+
+> 1-3 件让你感激的事情
+
+- 
+
+
+---
+
+## 2. 今天最大的成就是...
+
+> 不管多小都可以
+
+- 
+
+
+---
+
+## 3. 今天学到了什么...
+
+> 任何新知识、新见解
+
+- 
+
+
+---
+
+## 4. 今天可以改进的是...
+
+> 反思与成长
+
+- 
+
+
+---
+
+## 5. 明天最重要的一件事...
+
+> 聚焦你的目标
+
+
+
+
+---
+
+## 6. 今日心情
+
+😊 😐 😔 😤 🤩 😴 🥰 😎 🤔
+
+
+
+---
+
+## 7. 今日一句
+
+> 最想对自己说的话
+
+
+
+
+---
+
+💡 写完后告诉我，我会帮你 AI 分析总结！
+EOF
+          
+          echo "Created journal template: $FILENAME"
+
+      - name: Create reminder issue
         uses: actions/github-script@v7
         with:
           script: |
@@ -21,45 +105,44 @@ jobs:
               weekday: 'long'
             });
             
+            const date = new Date().toISOString().split('T')[0];
+            
             github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
               title: `📝 Journal Reminder - ${today}`,
               body: `
-## 🖊️ 今日日记
+## 🖊️ 今晚该写日记啦！
 
-欢迎来到今天的反思时间～
-
----
-
-### 📋 今日日记模板
-
-**1. 今天最让我感恩的事是...**
-> 写下 1-3 件让你感激的事情
-
-**2. 今天最大的成就是...**
-> 不管多小都可以
-
-**3. 今天学到了什么...**
-> 任何新知识、新见解
-
-**4. 今天可以改进的是...**
-> 反思与成长
-
-**5. 明天最重要的一件事...**
-> 聚焦目标
-
-**6. 今日心情关键词**
-> 😊 😐 😔 😤 🤩 ...
+**日期:** ${today}
 
 ---
 
-### 💡 写作提示
+### 📋 今天的日记主题
 
-- 用第一人称 "我" 书写
-- 不需要完美，想到什么写什么
-- 建议写 200-500 字
-- 写完后告诉我，我会帮你 AI 分析总结！
+请在你的 **Obsidian** 日记库中写下今天的日记：
+
+**文件位置:** \`Z/diaries/${date}.md\`
+
+---
+
+### 写作提示
+
+1. **感恩** - 今天最让我感恩的事是...
+2. **成就** - 今天最大的成就是...
+3. **学习** - 今天学到了什么...
+4. **改进** - 今天可以改进的是...
+5. **明日** - 明天最重要的一件事...
+6. **心情** - 今日心情关键词
+
+---
+
+### 💡 写完后
+
+在这条 issue 下面留言告诉我"写完了"，我会：
+- 读取你的日记
+- 用 AI 进行分析总结
+- 给你温暖的反馈
 
 ---
 *🤖 来自 TechPulse 日记助手*
