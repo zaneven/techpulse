@@ -1,0 +1,67 @@
+name: Daily Journal Reminder
+
+on:
+  schedule:
+    # 每天晚上 10 点 (北京时间) = 14:00 UTC
+    - cron: '0 14 * * *'
+  workflow_dispatch:
+
+jobs:
+  reminder:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create journal reminder issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const today = new Date().toLocaleDateString('zh-CN', { 
+              year: 'numeric', 
+              month: 'long', 
+              day: 'numeric',
+              weekday: 'long'
+            });
+            
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `📝 Journal Reminder - ${today}`,
+              body: `
+## 🖊️ 今日日记
+
+欢迎来到今天的反思时间～
+
+---
+
+### 📋 今日日记模板
+
+**1. 今天最让我感恩的事是...**
+> 写下 1-3 件让你感激的事情
+
+**2. 今天最大的成就是...**
+> 不管多小都可以
+
+**3. 今天学到了什么...**
+> 任何新知识、新见解
+
+**4. 今天可以改进的是...**
+> 反思与成长
+
+**5. 明天最重要的一件事...**
+> 聚焦目标
+
+**6. 今日心情关键词**
+> 😊 😐 😔 😤 🤩 ...
+
+---
+
+### 💡 写作提示
+
+- 用第一人称 "我" 书写
+- 不需要完美，想到什么写什么
+- 建议写 200-500 字
+- 写完后告诉我，我会帮你 AI 分析总结！
+
+---
+*🤖 来自 TechPulse 日记助手*
+              `
+            });
